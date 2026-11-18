@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adblock by AshQuark · Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <header class="brand">
+      <img src="icons/icon128.png" alt="" width="44" height="44">
+      <div>
+        <h1>Adblock by AshQuark</h1>
+        <p class="sub" id="version">Settings</p>
+      </div>
+    </header>
+
+    <!-- General -->
+    <section class="card">
+      <h2>General</h2>
+      <div class="row">
+        <div>
+          <span class="row-title">Protection everywhere</span>
+          <span class="row-sub">Turns all ad, tracker and popup blocking on or off.</span>
+        </div>
+        <label class="switch"><input type="checkbox" id="enabled"><span class="track"><span class="thumb"></span></span></label>
+      </div>
+      <div class="row">
+        <div>
+          <span class="row-title">Block video ads</span>
+          <span class="row-sub">Pre-roll and mid-roll ads in any HTML5 player, including tube sites such as xhamster, video.js, JW Player, Google IMA and YouTube. Ad requests get an empty "no ad" reply, and any ad that still plays is skipped.</span>
+        </div>
+        <label class="switch"><input type="checkbox" id="blockVideoAds"><span class="track"><span class="thumb"></span></span></label>
+      </div>
+      <div class="row">
+        <div>
+          <span class="row-title">Hide cookie banners</span>
+          <span class="row-sub">Off by default. Hides common consent pop-ups without clicking anything, so no consent is given.</span>
+        </div>
+        <label class="switch"><input type="checkbox" id="hideCookieBanners"><span class="track"><span class="thumb"></span></span></label>
+      </div>
+      <p class="rules-info" id="rulesInfo"></p>
+    </section>
+
+    <!-- Allowlist -->
+    <section class="card">
+      <h2>Allowlist</h2>
+      <p class="hint">Blocking is turned off on these sites and their subdomains.</p>
+      <form class="add" data-list="allowlist">
+        <input type="text" placeholder="example.com" autocomplete="off" spellcheck="false" aria-label="Domain to allowlist">
+        <button type="submit">Add</button>
+      </form>
+      <ul class="list" id="list-allowlist"></ul>
+    </section>
+
+    <!-- Custom block domains -->
+    <section class="card">
+      <h2>Custom blocked domains</h2>
+      <p class="hint">Requests to these domains (and their subdomains) are blocked on every site. You can paste several at once, separated by spaces, commas or new lines.</p>
+      <form class="add" data-list="customDomains">
+        <input type="text" placeholder="ads.example.net" autocomplete="off" spellcheck="false" aria-label="Domain to block">
+        <button type="submit">Add</button>
+      </form>
+      <ul class="list" id="list-customDomains"></ul>
+    </section>
+
+    <!-- Custom CSS selectors -->
+    <section class="card">
+      <h2>Custom hiding rules</h2>
+      <p class="hint">CSS selectors for elements to hide on every site, e.g. <code>.promo-banner</code> or <code>#sticky-video</code>. One per line.</p>
+      <form class="add" data-list="customSelectors">
+        <textarea rows="2" placeholder=".annoying-widget&#10;#sticky-video" autocomplete="off" spellcheck="false" aria-label="CSS selectors to hide, one per line"></textarea>
+        <button type="submit">Add</button>
+      </form>
+      <ul class="list" id="list-customSelectors"></ul>
+    </section>
+
+    <footer>
+      <span>Made by AshQuark</span>
+      <span>No external network calls · No analytics · No remote code</span>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="shared.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

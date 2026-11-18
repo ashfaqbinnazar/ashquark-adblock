@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adblock by AshQuark</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="brand">
+    <img src="icons/icon48.png" alt="" width="28" height="28">
+    <div>
+      <h1>Adblock by AshQuark</h1>
+      <p class="sub" id="version">Fast · Private</p>
+    </div>
+  </header>
+
+  <!-- Per-site switch (allowlist) -->
+  <section class="card site">
+    <div class="site-info">
+      <span class="label">This site</span>
+      <span class="host" id="host">—</span>
+    </div>
+    <label class="switch big" title="Turn blocking on or off for this site">
+      <input type="checkbox" id="siteToggle" disabled>
+      <span class="track"><span class="thumb"></span></span>
+    </label>
+  </section>
+  <p class="status" id="siteStatus">Loading…</p>
+
+  <!-- Live counters for the current tab -->
+  <section class="stats">
+    <div class="stat">
+      <span class="num" id="blockedCount">0</span>
+      <span class="label">Requests blocked</span>
+    </div>
+    <div class="stat">
+      <span class="num" id="popupCount">0</span>
+      <span class="label">Popups &amp; video ads</span>
+    </div>
+  </section>
+
+  <!-- Global switch -->
+  <section class="card row">
+    <div>
+      <span class="row-title">Protection everywhere</span>
+      <span class="row-sub" id="globalSub">Ad, tracker &amp; popup rules active</span>
+    </div>
+    <label class="switch" title="Enable or disable blocking on all sites">
+      <input type="checkbox" id="globalToggle">
+      <span class="track"><span class="thumb"></span></span>
+    </label>
+  </section>
+
+  <footer>
+    <button class="link" id="openOptions" type="button">Settings</button>
+    <span class="muted">No tracking · No remote code</span>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

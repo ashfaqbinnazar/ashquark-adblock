@@ -1,0 +1,81 @@
+/*
+ * Adblock by AshQuark — static cosmetic filters.
+ *
+ * Injected at document_start into every frame (except allowlisted sites).
+ * Layout safety:
+ *  - Only `display: none` is used, so nothing else on the page is restyled.
+ *  - Broad attribute matches are limited to container elements via :is(...),
+ *    so they can never hide <html>/<body> (WordPress, for example, puts classes like
+ *    "sponsored-post" on <body>) or a whole <article>/<main>.
+ *  - Substring matches use ad-specific stems such as "ad-slot" or "sponsored-",
+ *    never a bare "ad", which would also match "header", "shadow", "download"…
+ */
+
+/* --- Google AdSense / Ad Manager (GPT) ----------------------------------- */
+ins.adsbygoogle,
+[id*="google_ads"]:not(html):not(body),
+div[id^="div-gpt-ad"],
+div[id^="gpt-ad-"],
+div[data-google-query-id],
+iframe[id^="google_ads_iframe"],
+iframe[name^="google_ads_iframe"],
+
+/* --- Ad iframes ------------------------------------------------------------ */
+iframe[src*="doubleclick.net"],
+iframe[src*="googlesyndication.com"],
+iframe[src*="amazon-adsystem.com"],
+iframe[src*="adnxs.com"],
+iframe[src*="/ads/"],
+iframe[src*="://ads."],
+iframe[src*="/adserver"],
+iframe[id^="ad_iframe"],
+iframe[title="Advertisement"],
+iframe[title="3rd party ad content"],
+
+/* --- Native / recommendation widgets ------------------------------------- */
+div[id^="taboola-"],
+.trc_related_container,
+.trc_rbox_container,
+.OUTBRAIN,
+.ob-widget,
+div[id^="rcjsload"],
+div[id^="zergnet-widget"],
+.zergnet-widget,
+amp-ad,
+amp-embed[type="taboola"],
+amp-embed[type="outbrain"],
+amp-sticky-ad,
+
+/* --- Generic ad containers (containers only, never html/body/article) ---- */
+:is(div, aside, section, span, li, figure)[class*="sponsored-content"],
+:is(div, aside, section, span, li, figure)[class*="sponsored-post"],
+:is(div, aside, section, span, li, figure)[class*="sponsored-ad"],
+:is(div, aside, section, span, li, figure)[class*="sponsored-link"],
+:is(div, aside, section, span, li, figure)[class^="sponsored-"],
+:is(div, aside, section, span, li, figure)[id^="ad-slot"],
+:is(div, aside, section, span, li, figure)[id^="adslot"],
+:is(div, aside, section, span, li, figure)[class^="ad-slot"],
+:is(div, aside, section, span, li, figure)[class*=" ad-slot"],
+:is(div, aside, section, span, li, figure)[id^="ad-container"],
+:is(div, aside, section, span, li, figure)[class^="ad-container"],
+:is(div, aside, section, span, li, figure)[class*=" ad-container"],
+:is(div, aside, section, span, li, figure)[id^="ad_banner"],
+:is(div, aside, section, span, li, figure)[class^="ad-banner"],
+:is(div, aside, section, span, li, figure)[class*=" ad-banner"],
+:is(div, aside, section, span, li, figure)[id^="advertisement"],
+:is(div, aside, section, span, li, figure)[class^="advertisement"],
+:is(div, aside, section, span, li, figure)[class*=" advertisement"],
+:is(div, aside, section, span, li, figure)[aria-label="Advertisement" i],
+:is(div, aside, section, span, li, figure)[data-ad-slot],
+:is(div, aside, section, span, li, figure)[data-ad-unit],
+:is(div, aside, section, span, li, figure)[data-adunit],
+
+/* --- Overlay / interstitial ads (content.js also restores scrolling) ----- */
+:is(div, aside, section)[class*="ad-interstitial" i],
+:is(div, aside, section)[id*="ad-interstitial" i],
+:is(div, aside, section)[class*="ad-overlay" i],
+:is(div, aside, section)[id*="ad-overlay" i],
+:is(div, aside, section)[class*="popunder" i],
+:is(div, aside, section)[id*="popunder" i] {
+  display: none !important;
+}

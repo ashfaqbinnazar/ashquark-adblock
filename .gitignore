@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+*.zip
+*.crx
+*.pem
+.claude/settings.local.json
+# Chrome-generated when loading unpacked (indexed DNR rulesets)
+_metadata/

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AshQuark QA harness</title>
+<!-- Minimal chrome.* stub so isolated-world scripts run on a plain page. -->
+<script>
+  window.chrome = window.chrome || {};
+  chrome.storage = { sync: { get: async (d) => d }, onChanged: { addListener() {} } };
+  chrome.runtime = { sendMessage: async () => {} };
+</script>
+<!-- Real extension scripts, same order as the service worker registers them. -->
+<script src="../main-world.js"></script>
+<script src="../video-ads-main.js"></script>
+<script src="../video-ads.js"></script>
+<style>
+  body { font: 13px system-ui; background: #0b0f17; color: #e6eaf2; padding: 16px; }
+  .player { position: relative; width: 320px; height: 180px; margin: 8px 0; background: #000; }
+  video { width: 100%; height: 100%; }
+  .pass { color: #4ade80; } .fail { color: #f87171; }
+</style>
+</head>
+<body>
+<h1>AshQuark QA harness</h1>
+
+<!-- A: dedicated ad player in "ad mode" (video.js + IMA style) -->
+<div class="player vjs-ad-playing" id="pA"><video id="vA" src="fixtures/ad.mp4" muted playsinline></video>
+  <button class="vjs-ad-skip" id="skipA" style="position:absolute;right:4px;bottom:4px" onclick="window.__skipClicked=true">Skip Ad ›</button>
+</div>
+<!-- B: normal player with the main (4-minute) video and a "Skip intro" button -->
+<div class="player" id="pB"><video id="vB" src="fixtures/main.mp4" muted playsinline></video>
+  <button id="introB" style="position:absolute;right:4px;bottom:4px" onclick="window.__introClicked=true">Skip intro</button>
+  <div class="pause-ad" id="pauseAd" style="position:absolute;left:4px;top:4px;width:120px;height:60px;background:#f0f">PAUSE AD</div>
+</div>
+<!-- C: long main video while the player still says "ad mode" (must NOT be skipped) -->
+<div class="player ad-showing" id="pC"><video id="vC" src="fixtures/main.mp4" muted playsinline></video></div>
+
+<ol id="out"></ol>
+<script src="harness.js"></script>
+</body>
+</html>

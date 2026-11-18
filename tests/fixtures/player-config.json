@@ -1,0 +1,3 @@
+{"video":{"title":"Main","hls":"stream/master.m3u8","mp4":"main.mp4","duration":240},
+ "preroll":{"enabled":true,"url":"ad-response.xml","skipAfter":5},
+ "vastUrl":"ad-response.xml","midrolls":[{"at":60,"tag":"ad-response.xml"}],"autoplay":true}
